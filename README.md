@@ -44,6 +44,10 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+## Running the app with docker
+```bash
+$ docker-compose up
+```
 
 ## Test
 
@@ -57,6 +61,10 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Api docs
+
+https://localhost:3000/docs
 
 ## Support
 
