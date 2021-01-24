@@ -5,6 +5,7 @@ import { RouterModule, Routes } from 'nest-router';
 // App modules
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { ShoppingCartsModule } from './shopping-carts/shopping-carts.module';
 
 // App routes
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
         path: '/users',
         module: UsersModule,
       },
+      {
+        path: '/shoppingCarts',
+        module: ShoppingCartsModule,
+      },
     ],
   },
 ];
@@ -25,8 +30,9 @@ const routes: Routes = [
     // App modules
     AuthModule,
     UsersModule,
+    ShoppingCartsModule,
     // Router module
     RouterModule.forRoutes(routes),
   ],
 })
-export class RoutesModule {}
+export class RoutesModule { }

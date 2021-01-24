@@ -24,4 +24,4 @@ import jwtConfig from './config/jwt.config';
     RoutesModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }

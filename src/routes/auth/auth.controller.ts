@@ -13,7 +13,7 @@ export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly usersService: UsersService,
-  ) {}
+  ) { }
 
   @Get('refresh')
   async refreshToken(@Query('token') token: string) {

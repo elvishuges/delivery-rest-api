@@ -23,4 +23,4 @@ const logging = process.env.NODE_ENV === 'development';
     }),
   ],
 })
-export class DatabaseModule {}
+export class DatabaseModule { }

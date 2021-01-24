@@ -12,4 +12,4 @@ import { UsersService } from './users.service';
   providers: [IsEmailUnique, UsersService],
   exports: [IsEmailUnique, UsersService],
 })
-export class UsersModule {}
+export class UsersModule { }

@@ -18,6 +18,7 @@ export class AuthService {
   }
 
   public async login(user: User): Promise<JwtToken> {
+
     const {
       accessTokenExpirationTime,
       refreshTokenExpirationTime,
@@ -59,5 +60,5 @@ export class AuthService {
     private readonly config: ConfigType<typeof JwtConfig>,
     private readonly jwtService: JwtService,
     private readonly usersService: UsersService,
-  ) {}
+  ) { }
 }

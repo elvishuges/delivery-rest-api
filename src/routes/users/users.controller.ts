@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Param, Post, Put, Get } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { CrudController } from '@/core';
@@ -25,6 +25,13 @@ export class UsersController extends CrudController<User> {
   ): Promise<any> {
     return super.update(id, entity);
   }
+
+  @ApiOperation({ summary: 'Find shoppingcart by user id' })
+  @Get(':id/shoppingCarts')
+  async findById(@Param('id') id: string): Promise<any> {
+    return this.usersService.findOne(id, { relations: ["shoppingCarts"] });
+  }
+
 
   constructor(private readonly usersService: UsersService) {
     super(usersService);
