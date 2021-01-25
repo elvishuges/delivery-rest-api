@@ -6,6 +6,11 @@ import { RouterModule, Routes } from 'nest-router';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ShoppingCartsModule } from './shopping-carts/shopping-carts.module';
+import { ProductsModule } from './products/products.module';
+import { CategoriesController } from './categories/categories.controller';
+import { CategoriesModule } from './categories/categories.module';
+import { Category } from './categories/entities/category.entity';
+import { Product } from './products/entities/product.entity';
 
 // App routes
 const routes: Routes = [
@@ -21,6 +26,14 @@ const routes: Routes = [
         path: '/shoppingCarts',
         module: ShoppingCartsModule,
       },
+      {
+        path: '/categories',
+        module: CategoriesModule,
+      },
+      {
+        path: '/products',
+        module: ProductsModule,
+      },
     ],
   },
 ];
@@ -33,6 +46,9 @@ const routes: Routes = [
     ShoppingCartsModule,
     // Router module
     RouterModule.forRoutes(routes),
+    ProductsModule,
+    CategoriesModule,
   ],
+  controllers: [CategoriesController],
 })
 export class RoutesModule { }

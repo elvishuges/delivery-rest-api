@@ -1,5 +1,7 @@
 import { Body, Controller, Param, Post, Put, Get } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { IPagination } from '@/core/crud/pagination';
+import { PaginationParams } from '@/core/crud/pagination-params';
 
 import { CrudController } from '@/core';
 
@@ -31,6 +33,15 @@ export class UsersController extends CrudController<User> {
   async findById(@Param('id') id: string): Promise<any> {
     return this.usersService.findOne(id, { relations: ["shoppingCarts"] });
   }
+
+  @ApiOperation({ summary: 'Get all users with shoppingcarts' })
+  @Get('shoppingCarts')
+  async findAllWithShoppingCarts(): Promise<any> {
+    return this.usersService.findAll({ relations: ["shoppingCarts"] });
+
+  }
+
+
 
 
   constructor(private readonly usersService: UsersService) {

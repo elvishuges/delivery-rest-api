@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { IPagination } from '@/core/crud/pagination';
+import { PaginationParams } from '@/core/crud/pagination-params';
 
 import { CrudService } from '@/core';
 
