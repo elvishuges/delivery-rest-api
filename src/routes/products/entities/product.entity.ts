@@ -1,7 +1,10 @@
-import { Column, Entity, Index, ManyToOne } from 'typeorm';
+import { Column, Entity, Index, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import { Base } from '@/core/entities/base';
 
 import { Category } from "./../../categories/entities/category.entity";
+
+
+import { ShoppingCart } from "./../../shopping-carts/entities/shopping-cart.entity";
 
 @Entity('product')
 export class Product extends Base {
@@ -17,5 +20,8 @@ export class Product extends Base {
 
     @ManyToOne(() => Category, category => category)
     category: Category;
+
+    @ManyToMany(type => ShoppingCart, shoppingCart => shoppingCart.products)
+    shoppingCarts: ShoppingCart[]
 
 }
