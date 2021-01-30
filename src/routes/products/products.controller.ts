@@ -2,6 +2,8 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CrudController } from '@/core';
 import { Body, Controller, Param, Post, Put, Get } from '@nestjs/common';
 
+import { CreateCategoryDto, Category, CategoriesService } from '../categories';
+
 
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -15,6 +17,8 @@ export class ProductsController extends CrudController<Product>  {
     @ApiOperation({ summary: 'Create new record' })
     @Post()
     async create(@Body() entity: CreateProductDto): Promise<Product> {
+        let category = await this.categoriesService.findOne(entity.categoryId)
+        entity.categoryId = category.id
         return super.create(entity);
     }
 
@@ -34,7 +38,9 @@ export class ProductsController extends CrudController<Product>  {
     }
 
 
-    constructor(private readonly productsService: ProductsService) {
+    constructor(
+        private readonly productsService: ProductsService,
+        private readonly categoriesService: CategoriesService) {
         super(productsService);
     }
 }

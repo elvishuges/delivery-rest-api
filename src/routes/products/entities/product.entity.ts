@@ -1,4 +1,4 @@
-import { Column, Entity, Index, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
+import { Column, Entity, Index, ManyToOne, ManyToMany, JoinColumn } from 'typeorm';
 import { Base } from '@/core/entities/base';
 
 import { Category } from "./../../categories/entities/category.entity";
@@ -19,7 +19,11 @@ export class Product extends Base {
     price: number;
 
     @ManyToOne(() => Category, category => category)
+    @JoinColumn({ name: "categoryId" })
     category: Category;
+
+    @Column()
+    categoryId: number;
 
     @ManyToMany(type => ShoppingCart, shoppingCart => shoppingCart.products)
     shoppingCarts: ShoppingCart[]

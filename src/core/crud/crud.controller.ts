@@ -19,7 +19,7 @@ import { IPagination } from './pagination';
 import { PaginationParams } from './pagination-params';
 
 export abstract class CrudController<T extends Base> {
-  protected constructor(private readonly crudService: ICrudService<T>) {}
+  protected constructor(private readonly crudService: ICrudService<T>) { }
 
   @ApiOperation({ summary: 'find all' })
   @Get()
