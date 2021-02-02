@@ -5,8 +5,10 @@ import { ShoppingCartsService } from './shopping-carts.service';
 import { ShoppingCart } from './entities/shopping-cart.entity';
 import { ShoppingCartsController } from './shopping-carts.controller';
 
+import { ProductsModule } from '../products';
+
 @Module({
-  imports: [TypeOrmModule.forFeature([ShoppingCart])],
+  imports: [ProductsModule, TypeOrmModule.forFeature([ShoppingCart])],
   controllers: [ShoppingCartsController],
   providers: [ShoppingCartsService],
   exports: [ShoppingCartsService]

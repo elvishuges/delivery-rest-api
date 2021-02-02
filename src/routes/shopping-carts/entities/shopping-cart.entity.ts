@@ -1,4 +1,4 @@
-import { Column, Entity, Index, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
+import { Column, Entity, Index, ManyToOne, ManyToMany, JoinTable, JoinColumn, RelationId } from 'typeorm';
 import { User } from "./../../users/entities/user.entity";
 import { Product } from "./../../products/entities/product.entity";
 import { Base } from '@/core/entities/base';
@@ -13,9 +13,14 @@ export class ShoppingCart extends Base {
     paiedOut: boolean;
 
     @ManyToOne(() => User, user => user.shoppingCarts)
+    @JoinColumn({ name: "userId" })
     user: User;
 
-    @ManyToMany(type => Product, product => product.shoppingCarts)
+    @Column()
+    userId: number;
+
+    @ManyToMany(type => Product)
     @JoinTable()
     products: Product[]
+
 }

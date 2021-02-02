@@ -8,8 +8,13 @@ import { ShoppingCart } from './entities/shopping-cart.entity';
 
 @Injectable()
 export class ShoppingCartsService extends CrudService<ShoppingCart> {
+
     async findByStatus(paiedOut: boolean) {
         return await this.shoppingCartRepository.findOne({ paiedOut });
+    }
+    // testt
+    async save(shoppingCart: ShoppingCart): Promise<ShoppingCart> {
+        return await this.shoppingCartRepository.save(shoppingCart);
     }
 
     constructor(

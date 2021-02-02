@@ -34,7 +34,6 @@ export class User extends Base implements IUser {
   })
   password: string;
 
-
   @OneToMany(() => ShoppingCart, shoppingCart => shoppingCart.user)
   shoppingCarts: ShoppingCart[];
 

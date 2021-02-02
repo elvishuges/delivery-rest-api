@@ -25,7 +25,4 @@ export class Product extends Base {
     @Column()
     categoryId: number;
 
-    @ManyToMany(type => ShoppingCart, shoppingCart => shoppingCart.products)
-    shoppingCarts: ShoppingCart[]
-
 }

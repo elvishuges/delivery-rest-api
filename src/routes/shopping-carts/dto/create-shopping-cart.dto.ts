@@ -13,7 +13,10 @@ export class CreateShoppingCartDto {
   readonly price: number;
 
   @ApiProperty()
-  @IsBoolean()
   @IsNotEmpty()
   readonly paiedOut: boolean;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  userId: number;
 }
