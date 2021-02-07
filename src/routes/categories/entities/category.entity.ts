@@ -6,7 +6,4 @@ export class Category extends Base {
     @Index()
     @Column()
     name: string;
-
-    @Column()
-    description: string;
 }

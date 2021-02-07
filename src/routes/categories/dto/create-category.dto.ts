@@ -10,9 +10,4 @@ export class CreateCategoryDto {
     @IsString()
     @IsNotEmpty()
     readonly name: string;
-
-    @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-    readonly description: string;;
 }

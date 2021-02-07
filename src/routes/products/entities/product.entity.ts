@@ -13,6 +13,9 @@ export class Product extends Base {
     name: string;
 
     @Column()
+    description: string;
+
+    @Column()
     imageUrl: string;
 
     @Column()

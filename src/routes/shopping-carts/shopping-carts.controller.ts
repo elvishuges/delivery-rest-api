@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Param, Post, Put } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { CrudController } from '@/core';
@@ -24,12 +24,29 @@ export class ShoppingCartsController extends CrudController<ShoppingCart> {
 
     @ApiOperation({ summary: 'add product to shoppingcart' })
     @Post(':id/products')
-    async addProduct(@Param('id') idShoppingCart: number, @Body('id') idProduct: string): Promise<any> {
-
+    async addProduct(@Param('id') idShoppingCart: number, @Body('id') idProduct: number): Promise<any> {
         let product = await this.productsService.findOne(idProduct)
+        console.log('aquiii', product);
+
         let shoppingCart = await this.shoppingCartsService.findOne(idShoppingCart, { relations: ['products'] })
         shoppingCart.products.push(product)
         await this.shoppingCartsService.save(shoppingCart)
+        return product
+    }
+
+    @ApiOperation({ summary: 'remove product to shoppingcart' })
+    @Delete(':id/products')
+    async removeProduct(@Param('id') idShoppingCart: number, @Body('id') idProduct: number): Promise<any> {
+        let shoppingCart = await this.shoppingCartsService.findOne(idShoppingCart, { relations: ['products'] })
+        console.log('shoppingcart finded', shoppingCart);
+        let indexFinded = shoppingCart.products.findIndex((product) => {
+            return product.id == idProduct
+        })
+        if (indexFinded > -1) {
+            shoppingCart.products.splice(indexFinded, 1);
+        }
+        await this.shoppingCartsService.save(shoppingCart)
+        let product = await this.productsService.findOne(idProduct)
         return product
     }
 
